@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <p><h1 style="align-items: center;">Web OCR Nhận Dạng Chữ Viết Tay</h1></p>
-        <form action="/" method="post" enctype="multipart/form-data" class="mt-3">
+        <p><h1 style="align-items: center;">Web Nhận Dạng Chữ Viết Tay</h1></p>
+        <form action="/results" method="post" enctype="multipart/form-data" class="mt-3">
             <div class="form-group">
                 <label for="file">Upload an image</label>
                 <input type="file" name="file" class="form-control-file" id="file" required>
@@ -17,10 +17,66 @@
             <button type="submit" class="btn btn-primary">Upload</button>
         </form>
         <div class="form-group mt-3">
-            <label for="prediction">Predicted digit</label>
-            <input type="text" class="form-control" id="prediction" value="">
+            <label for="predict">Predicted results</label>
+            <input type="text" class="form-control" id="predict" value="">
         </div>
     </div>
     
+    <!--Xử lý form-->
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const predictInput = document.getElementById('predict');
+
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                try {
+                    const formData = new FormData(form);
+                    const response = await fetch('/results', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        predictionInput.value = data.predict;
+                    }
+                } catch (error) {
+                console.error('Error:', error);
+                alert('Lỗi xảy ra khi gửi yêu cầu đến server.');
+                }
+            });
+        });
+    </script> -->
+    <script>
+        const form = document.querySelector('form');
+        const predictionInput = document.getElementById('predict');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            fetch('/results', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    predictionInput.value = data.predict;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi gửi yêu cầu đến server.'); 
+            });
+        });
+    </script>
 </body>
 </html>
