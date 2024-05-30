@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dự Án Nhận Diện Chữ Viết</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
@@ -23,34 +24,6 @@
     </div>
     
     <!--Xử lý form-->
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            const predictInput = document.getElementById('predict');
-
-            form.addEventListener('submit', async function(event) {
-                event.preventDefault();
-
-                try {
-                    const formData = new FormData(form);
-                    const response = await fetch('/results', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    const data = await response.json();
-
-                    if (data.error) {
-                        alert(data.error);
-                    } else {
-                        predictionInput.value = data.predict;
-                    }
-                } catch (error) {
-                console.error('Error:', error);
-                alert('Lỗi xảy ra khi gửi yêu cầu đến server.');
-                }
-            });
-        });
-    </script> -->
     <script>
         const form = document.querySelector('form');
         const predictionInput = document.getElementById('predict');
